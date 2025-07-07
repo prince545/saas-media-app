@@ -28,7 +28,7 @@ A modern SaaS application for uploading, managing, and sharing images and videos
 ### Setup
 1. **Clone the repository:**
    ```bash
-   git clone <your-repo-url>
+   git clone <https://github.com/prince545/saas-media-app>
    cd saas-media-app
    ```
 2. **Install dependencies:**
