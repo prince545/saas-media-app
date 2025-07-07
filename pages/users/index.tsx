@@ -1,35 +1,64 @@
-import { GetStaticProps } from "next";
+import { useEffect, useState } from "react";
 import Link from "next/link";
-
 import { User } from "../../interfaces";
-import { sampleUserData } from "../../utils/sample-data";
 import Layout from "../../components/Layout";
 import List from "../../components/List";
 
-type Props = {
-  items: User[];
-};
+export default function UsersPage() {
+  const [users, setUsers] = useState<User[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
-const WithStaticProps = ({ items }: Props) => (
-  <Layout title="Users List | Next.js + TypeScript Example">
-    <h1>Users List</h1>
-    <p>
-      Example fetching data from inside <code>getStaticProps()</code>.
-    </p>
-    <p>You are currently on: /users</p>
-    <List items={items} />
-    <p>
-      <Link href="/">Go home</Link>
-    </p>
-  </Layout>
-);
+  useEffect(() => {
+    setLoading(true);
+    setError(null);
+    fetch("/api/users")
+      .then((res) => {
+        if (!res.ok) throw new Error("Failed to fetch users");
+        return res.json();
+      })
+      .then((data) => setUsers(data))
+      .catch((err) => setError(err.message))
+      .finally(() => setLoading(false));
+  }, []);
 
-export const getStaticProps: GetStaticProps = async () => {
-  // Example for including static props in a Next.js function component page.
-  // Don't forget to include the respective types for any props passed into
-  // the component.
-  const items: User[] = sampleUserData;
-  return { props: { items } };
-};
+  return (
+    <Layout title="Users List | SaaS Media App">
+      <div className="max-w-2xl mx-auto py-8">
+        <h1 className="text-3xl font-bold mb-4 text-center">Users List</h1>
+        <p className="text-center text-gray-500 dark:text-gray-400 mb-4">
+          Browse all users of the SaaS Media Platform.
+        </p>
 
-export default WithStaticProps;
+        {loading && (
+          <div className="flex justify-center items-center h-24">
+            <div className="animate-spin rounded-full h-8 w-8 border-t-4 border-blue-500"></div>
+          </div>
+        )}
+
+        {error && (
+          <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4 text-center">
+            {error}
+          </div>
+        )}
+
+        {!loading && !error && users.length === 0 && (
+          <div className="text-center text-gray-500 dark:text-gray-400">
+            No users found.
+          </div>
+        )}
+
+        {!loading && !error && users.length > 0 && <List items={users} />}
+
+        <div className="mt-8 text-center">
+          <Link
+            href="/"
+            className="inline-block border border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white text-sm font-medium py-2 px-4 rounded transition"
+          >
+            Go home
+          </Link>
+        </div>
+      </div>
+    </Layout>
+  );
+}

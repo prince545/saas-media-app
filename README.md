@@ -1,61 +1,72 @@
-# TypeScript Next.js example
+# SaaS Media Platform
 
-This is a really simple project that shows the usage of Next.js with TypeScript.
+A modern SaaS application for uploading, managing, and sharing images and videos in the cloud. Built with Next.js, TypeScript, Tailwind CSS, and Clerk authentication, this project demonstrates a full-stack, production-ready SaaS platform suitable for your resume or portfolio.
 
-## Deploy your own
+## Features
+- Cloud-based image and video uploads (Cloudinary integration)
+- Responsive public gallery and personal dashboard
+- Modern authentication with Clerk
+- Social sharing and download options
+- Beautiful UI with Tailwind CSS and DaisyUI
+- Dark mode support
+- API-driven user management
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/vercel/next.js/tree/canary/examples/with-typescript&project-name=with-typescript&repository-name=with-typescript)
+## Tech Stack
+- **Next.js** (React, SSR, API routes)
+- **TypeScript**
+- **Tailwind CSS** & **DaisyUI**
+- **Cloudinary** (media storage)
+- **Clerk** (authentication)
 
-## How to use it?
+## Getting Started
 
-Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [npm](https://docs.npmjs.com/cli/init), [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/), or [pnpm](https://pnpm.io) to bootstrap the example:
+### Prerequisites
+- Node.js 18+
+- Cloudinary account (for media uploads)
+- Clerk account (for authentication)
 
-```bash
-npx create-next-app --example with-typescript with-typescript-app
-```
+### Setup
+1. **Clone the repository:**
+   ```bash
+   git clone <your-repo-url>
+   cd saas-media-app
+   ```
+2. **Install dependencies:**
+   ```bash
+   npm install
+   # or
+   yarn install
+   ```
+3. **Configure environment variables:**
+   - Create a `.env.local` file in the root of `saas-media-app/` with the following:
+     ```env
+     CLOUDINARY_CLOUD_NAME=your_cloud_name
+     CLOUDINARY_API_KEY=your_api_key
+     CLOUDINARY_API_SECRET=your_api_secret
+     NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=your_clerk_publishable_key
+     CLERK_SECRET_KEY=your_clerk_secret_key
+     ```
+4. **Run the development server:**
+   ```bash
+   npm run dev
+   # or
+   yarn dev
+   ```
+5. **Open [http://localhost:3000](http://localhost:3000) in your browser.**
 
-```bash
-yarn create next-app --example with-typescript with-typescript-app
-```
+## Usage
+- **Landing Page:** Overview and call to action.
+- **Dashboard:** Upload images/videos, view your media gallery.
+- **Gallery:** Browse all uploaded media.
+- **Users:** View all users and user details.
+- **Authentication:** Sign in/out with Clerk.
 
-```bash
-pnpm create next-app --example with-typescript with-typescript-app
-```
+## Screenshots
+> Add screenshots here for extra polish!
 
-Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&utm_medium=readme&utm_campaign=next-example) ([Documentation](https://nextjs.org/docs/deployment)).
+## License
+MIT
 
-## Notes
+---
 
-This example shows how to integrate the TypeScript type system into Next.js. Since TypeScript is supported out of the box with Next.js, all we have to do is to install TypeScript.
-
-```shell
-npm install --save-dev typescript
-```
-
-```shell
-yarn install --save-dev typescript
-```
-
-```shell
-pnpm install --save-dev typescript
-```
-
-To enable TypeScript's features, we install the type declarations for React and Node.
-
-```shell
-npm install --save-dev @types/react @types/react-dom @types/node
-```
-
-```shell
-yarn install --save-dev @types/react @types/react-dom @types/node
-```
-
-```shell
-pnpm install --save-dev @types/react @types/react-dom @types/node
-```
-
-When we run `next dev` the next time, Next.js will start looking for any `.ts` or `.tsx` files in our project and builds it. It even automatically creates a `tsconfig.json` file for our project with the recommended settings.
-
-Next.js has built-in TypeScript declarations, so we'll get autocompletion for Next.js' modules straight away.
-
-A `type-check` script is also added to `package.json`, which runs TypeScript's `tsc` CLI in `noEmit` mode to run type-checking separately. You can then include this, for example, in your `test` scripts.
+**Created for portfolio and resume use.**
